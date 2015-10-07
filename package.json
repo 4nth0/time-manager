@@ -1,8 +1,8 @@
 {
-  "name": "timer",
+  "name": "time-manager",
   "version": "1.0.0",
   "description": "",
-  "main": "timer.js",
+  "main": "time-manager.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
