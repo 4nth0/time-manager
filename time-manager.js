@@ -40,6 +40,10 @@ var Timer = function(interval, method) {
             return this;
         },
 
+        index:function(value){
+            return value !== undefined ? index = value : index;
+        },
+
         /**
          * [stop description]
          * @return {object} Instance of the current object
