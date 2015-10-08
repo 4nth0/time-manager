@@ -7,7 +7,15 @@
  */
 var Timer = function(interval, method) {
 
-    var cycle, playing = false;
+    var cycle, index, playing = false;
+
+    function initializeIndex(){
+        index = 0;
+    }
+
+    function iterate(){
+        return index++;
+    }
 
     return {
         /**
@@ -17,12 +25,11 @@ var Timer = function(interval, method) {
         start: function() {
 
             playing = true
+            initializeIndex();
 
             cycle = function() {
 
-                // console.log('""" Timer::start > cycle() """');
-
-                method();
+                method( iterate() );
                 if (playing) setTimeout(cycle, (interval * 1000));
             };
 
