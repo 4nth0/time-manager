@@ -1,36 +1,23 @@
-/**
- * [Timer description]
- * @param {int} interval [description]
- * @param {function} method   [description]
- *
- * @todo deport to Utils
- */
-var Timer = function(interval, method) {
+var Loop = function(interval, method) {
 
-    var cycle, index, playing = false;
+    var cycle, playing = false;
 
-    function initializeIndex(){
-        index = 0;
-    }
-
-    function iterate(){
-        return index++;
-    }
 
     return {
         /**
          * [start description]
          * @return {object} Instance of the current object
          */
+
         start: function() {
 
             playing = true
             self    = this;
-            initializeIndex();
+
 
             cycle = function() {
 
-                method.call(self, iterate() );
+                method.call(self);
 
                 if (playing) setTimeout(cycle, (interval * 1000));
             };
@@ -40,9 +27,6 @@ var Timer = function(interval, method) {
             return this;
         },
 
-        index:function(value){
-            return value !== undefined ? index = value : index;
-        },
 
         /**
          * [stop description]
@@ -54,6 +38,46 @@ var Timer = function(interval, method) {
             return this;
         }
     };
+}
+
+
+Timer = function(interval, method){
+
+    var interval    = interval || 10;
+    var method      = method || function(){};
+    var loop        = null;
+    var index       = 0;
+
+    function getIndex(){
+        return index;
+    }
+
+    function setIndex(value){
+        return index = value;
+    }
+
+    function iterate(value){
+        return setIndex(getIndex() +1);
+    }
+
+    return {
+        start: function(){
+
+
+            loop = Loop(interval, function(){
+
+                method( iterate() );
+            });
+
+            loop.start();
+        },
+        index:function(value){
+            return value !== undefined ? setIndex(value) : getIndex();
+        },
+        stop: function(){
+            loop.stop();
+        }
+    }
 }
 
 module.exports.Timer = Timer;
