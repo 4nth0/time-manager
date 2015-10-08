@@ -1,11 +1,23 @@
 {
   "name": "time-manager",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
+  "repository": {
+  	"type": "git",
+  	"url": "https://github.com/AnthonyCapirchio/time-manager"
+  },
+  "bugs": {
+  	"url": "https://github.com/AnthonyCapirchio/time-manager/issues"
+  },
   "main": "time-manager.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "keywords":[
+  	"time",
+  	"cron",
+  	"interval"
+  ],
+  "author": "Anthony Capirchio <a.capirchio@synapse-studio.fr>",
+  "license": "MIT"
 }
