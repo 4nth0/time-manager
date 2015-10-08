@@ -25,11 +25,13 @@ var Timer = function(interval, method) {
         start: function() {
 
             playing = true
+            self    = this;
             initializeIndex();
 
             cycle = function() {
 
-                method( iterate() );
+                method.call(self, iterate() );
+
                 if (playing) setTimeout(cycle, (interval * 1000));
             };
 
